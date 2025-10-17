@@ -22,41 +22,40 @@ export function Login() {
     mutationKey: ['User-login'],
     mutationFn: login,
     onSuccess: () => {
-      console.log("how kya");
-      navigation.navigate('Home');
+      console.log('how kya');
+      navigation.navigate("home")
     },
     onError: (error) => {
-     console.log("nahi aar",+error);
+      console.log('nahi aar', +error);
     },
   });
   const handleLogin = () => {
     if (email && password) {
-      console.log("chal rha hain");
-      console.log("frontend email",email);
+    
       mutation.mutate({ email, password });
-      console.log("frontend password",password);
+    
     } else {
       alert('Please enter email and password');
     }
   };
-if(mutation.isPending){
-  console.log("wait");
-}
+  if (mutation.isPending) {
+    console.log('wait');
+  }
   return (
     <SafeAreaView>
       <KeyboardAvoidingView
         behavior="padding"
-        className="mt-10 flex h-screen items-center gap-4 p-4">
+        className="flex h-screen items-center justify-center gap-4 p-4">
         {signUp ? (
           <Register />
         ) : (
           <>
-            <View className="min-h-2/5 flex w-full flex-col items-center justify-between gap-4 rounded-xl bg-white/20  p-5 backdrop-blur-xl">
+            <View className="min-h-2/5 flex w-full flex-col items-center justify-between gap-4 rounded-xl bg-white/20 p-5 backdrop-blur-xl">
               <View className="flex flex-col items-center gap-2">
                 <Text className="text-3xl text-zinc-100">Welcome Back!</Text>
                 <Text className="text-xl">Sign in to continue</Text>
               </View>
-              <View className="flex w-full flex-col gap-4 text-lg ">
+              <View className="flex w-full flex-col gap-4 text-lg">
                 <Text>Email</Text>
                 <TextInput
                   placeholder="Email"
@@ -66,7 +65,7 @@ if(mutation.isPending){
                   autoCapitalize="none"
                   className="w-full rounded-lg border-2 border-zinc-50 p-2 text-lg text-white focus:border-zinc-500"
                 />
-                <Text>Email</Text>
+                <Text>Password</Text>
                 <TextInput
                   placeholder="Password"
                   value={password}

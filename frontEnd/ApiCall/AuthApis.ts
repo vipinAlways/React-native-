@@ -9,7 +9,7 @@ interface AuthProps {
 }
 
 // Enhanced fetch with timeout and error handling
-const fetchWithTimeout = async (url:string, options = {}) => {
+const fetchWithTimeout = async (url: string, options = {}) => {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), API_TIMEOUT);
   console.log(url);
@@ -19,17 +19,16 @@ const fetchWithTimeout = async (url:string, options = {}) => {
       signal: controller.signal,
     });
     clearTimeout(timeoutId);
-    
+
     // Handle non-200 responses
     if (!response.ok) {
-
       throw new Error(`HTTP ${response.status}: ${response.statusText}`);
     }
-    
+
     return response;
   } catch (error) {
     clearTimeout(timeoutId);
-   
+
     throw error;
   }
 };
@@ -47,9 +46,9 @@ export const signUp = async ({ username, password, email }: AuthProps) => {
 
     const response = await fetchWithTimeout(getApiUrl('/auth/register'), {
       method: 'POST',
-      headers: { 
+      headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json',
       },
       body: JSON.stringify({ username, password, email }),
     });
@@ -57,30 +56,27 @@ export const signUp = async ({ username, password, email }: AuthProps) => {
     const data = await response.json();
     console.log('Registration successful:', data);
     return data;
-    
   } catch (error) {
-    console.error('Registration error:', )    
+    console.error('Registration error:');
     // Provide more specific    if (cludes('fetch')) {
-      throw new Error('Cannot connect to server. Make sure your backend is running and accessible.');
-    }
-    
-  
+    throw new Error('Cannot connect to server. Make sure your backend is running and accessible.');
+  }
 };
 
 // Sign In API
-export const signIn = async ({ email, password }:AuthProps) => {
+export const signIn = async ({ email, password }: AuthProps) => {
   try {
     if (!email || !password) {
       throw new Error('Email and password are required');
     }
 
     console.log('Attempting to login with:', { email });
-    
+
     const response = await fetchWithTimeout(getApiUrl('/auth/login'), {
       method: 'POST',
-      headers: { 
+      headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json',
       },
       body: JSON.stringify({ email, password }),
     });
@@ -88,10 +84,9 @@ export const signIn = async ({ email, password }:AuthProps) => {
     const data = await response.json();
     console.log('Login successful');
     return data;
-    
   } catch (error) {
-    console.error('Login error:',) 
-     throw new Error( 'Login failed');
+    console.error('Login error:');
+    throw new Error('Login failed');
   }
 };
 
@@ -99,21 +94,20 @@ export const signIn = async ({ email, password }:AuthProps) => {
 export const getAlluser = async () => {
   try {
     console.log('Fetching all users from:', getApiUrl('/users'));
-    
+
     const response = await fetchWithTimeout(getApiUrl('/users'), {
       method: 'GET',
-      headers: { 
-        'Accept': 'application/json',
+      headers: {
+        Accept: 'application/json',
       },
     });
 
     const data = await response.json();
     console.log('Users fetched successfully');
     return data;
-    
   } catch (error) {
-    console.error('Fetch users error:',)
-         throw new Error( 'Failed to fetch users');
+    console.error('Fetch users error:');
+    throw new Error('Failed to fetch users');
   }
 };
 
@@ -128,3 +122,5 @@ export const checkServerHealth = async () => {
     return false;
   }
 };
+
+export const login = async ({ email, password }: { email: string; password: string }) => {};
