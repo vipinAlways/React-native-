@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --respawn --transpile-only index.ts"
@@ -22,7 +23,6 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.17.2",
     "multer": "^2.0.2",
-    "nodemon": "^3.1.10",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
     "zod": "^4.0.17"
@@ -36,6 +36,8 @@
     "@types/node": "^24.3.0",
     "@types/passport": "^1.0.17",
     "@types/passport-local": "^1.0.38",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.9.2"
   }

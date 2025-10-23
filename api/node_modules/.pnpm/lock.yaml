@@ -38,9 +38,6 @@ importers:
       multer:
         specifier: ^2.0.2
         version: 2.0.2
-      nodemon:
-        specifier: ^3.1.10
-        version: 3.1.10
       passport:
         specifier: ^0.7.0
         version: 0.7.0
@@ -75,6 +72,12 @@ importers:
       '@types/passport-local':
         specifier: ^1.0.38
         version: 1.0.38
+      nodemon:
+        specifier: ^3.1.10
+        version: 3.1.10
+      ts-node:
+        specifier: ^10.9.2
+        version: 10.9.2(@types/node@24.3.0)(typescript@5.9.2)
       ts-node-dev:
         specifier: ^2.0.0
         version: 2.0.0(@types/node@24.3.0)(typescript@5.9.2)
